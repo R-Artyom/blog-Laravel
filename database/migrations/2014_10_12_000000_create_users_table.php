@@ -14,13 +14,21 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            // Таблицы
+            $table->id()->comment('Уникальный идентификатор пользователя');
+            $table->unsignedBigInteger('role_id')->default('2')->comment('Роль пользователя на сайте');
+            $table->string('name')->comment('Имя пользователя');
+            $table->string('email')->comment('Электронная почта (логин)');
+            $table->string('password')->comment('Пароль (в зашифрованном виде)');
+            $table->string('img_name')->comment('Аватар (название файла)');
+            $table->string('about_me')->default('')->comment('Краткая информация о себе');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent()->comment('Дата и время регистрации пользователя');
+            $table->timestamp('updated_at')->useCurrent()->comment('Дата и время обновления данных пользователя');
+            // Уникальные индексы
+            $table->unique('id');
+            $table->unique('email');
         });
     }
 
