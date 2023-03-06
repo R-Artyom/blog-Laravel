@@ -22,3 +22,7 @@ ENV COMPOSER_ALLOW_SUPERUSER = 1
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install Node.js и npm
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash && \
+    apt install nodejs
