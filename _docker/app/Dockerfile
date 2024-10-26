@@ -25,4 +25,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install Node.js и npm
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash && \
-    apt install nodejs
+    apt install nodejs -y
